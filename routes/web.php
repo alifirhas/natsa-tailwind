@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\RegionController;
+use App\Http\Controllers\Admin\VestigeController;
 use App\Http\Controllers\Admin\IrrigationController;
 
 /*
@@ -47,12 +48,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/regions/put/{region}', [RegionController::class, 'showPut'])->name('admin.regions.put');
 
         //irrigation
-        Route::get('/irrigations', [irrigationController::class, 'index'])->name('admin.irrigations');
-        Route::post('/irrigations', [irrigationController::class, 'store']);
-        Route::delete('/irrigations/{irrigation}', [irrigationController::class, 'destroy'])->name('admin.irrigations.delete');
-        Route::put('/irrigations/{irrigation}', [irrigationController::class, 'put'])->name('admin.irrigations.update');
-        Route::get('/irrigations/add', [irrigationController::class, 'showStore'])->name('admin.irrigations.add');
-        Route::get('/irrigations/put/{irrigation}', [irrigationController::class, 'showPut'])->name('admin.irrigations.put');
+        Route::get('/irrigations', [IrrigationController::class, 'index'])->name('admin.irrigations');
+        Route::post('/irrigations', [IrrigationController::class, 'store']);
+        Route::delete('/irrigations/{irrigation}', [IrrigationController::class, 'destroy'])->name('admin.irrigations.delete');
+        Route::put('/irrigations/{irrigation}', [IrrigationController::class, 'put'])->name('admin.irrigations.update');
+        Route::get('/irrigations/add', [IrrigationController::class, 'showStore'])->name('admin.irrigations.add');
+        Route::get('/irrigations/put/{irrigation}', [IrrigationController::class, 'showPut'])->name('admin.irrigations.put');
+
+        //vesitge -> bekas
+        Route::get('/vestiges', [VestigeController::class, 'index'])->name('admin.vestiges');
+        Route::post('/vestiges', [VestigeController::class, 'store']);
+        Route::delete('/vestiges/{vestige}', [VestigeController::class, 'destroy'])->name('admin.vestiges.delete');
+        Route::put('/vestiges/{vestige}', [VestigeController::class, 'put'])->name('admin.vestiges.update');
+        Route::get('/vestiges/add', [VestigeController::class, 'showStore'])->name('admin.vestiges.add');
+        Route::get('/vestiges/put/{vestige}', [VestigeController::class, 'showPut'])->name('admin.vestiges.put');
 
 
 
