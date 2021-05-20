@@ -47,6 +47,12 @@
             <x-input id="email" type="email" class="block w-full mt-1" wire:model.defer="state.email" />
             <x-input-error for="email" class="mt-2" />
         </div>
+
+        <!-- Role -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-label for="role" value="Role" />
+            <x-input id="role" type="text" class="block w-full mt-1" value="{{ auth()->user()->role }}" disabled="true"/>
+        </div>
     </x-slot>
 
     <x-slot name="actions">
