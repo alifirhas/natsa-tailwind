@@ -13,7 +13,7 @@ Project ini Dibuat dengan bantuan template
 
 ```
 # Clone the repository from GitHub and open the directory:
-git clone https://github.com/miten5/larawind.git
+git https://github.com/alifirhas/natsa-tailwind
 
 # cd into your project directory
 cd larawind
