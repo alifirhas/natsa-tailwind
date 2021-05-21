@@ -13,10 +13,10 @@ Project ini Dibuat dengan bantuan template
 
 ```
 # Clone the repository from GitHub and open the directory:
-git https://github.com/alifirhas/natsa-tailwind
+git clone https://github.com/alifirhas/natsa-tailwind
 
 # cd into your project directory
-cd larawind
+cd natsa-tailwind
 
 #install composer and npm packages
 composer install
@@ -35,3 +35,6 @@ php artisan serve
 ### Project made possible thanks to:
 
 - [Miten5 Larawind](https://github.com/miten5/larawind)
+- [Laravel Jetstream](https://jetstream.laravel.com/1.x/introduction.html)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Windmill Dashboard](https://windmill-dashboard.vercel.app/)
