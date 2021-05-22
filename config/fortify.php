@@ -61,7 +61,19 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    // 'home' => RouteServiceProvider::HOME,
+    'home' => function(){
+        if (auth()->user()->role == 'admin' || auth()->user()->role == 'dev') {
+            return route('dashboard');
+        }
+
+        if (auth()->user()->role == 'user') {
+            return route('user.home');
+        }
+
+        return route('welcome');
+
+    },
 
     /*
     |--------------------------------------------------------------------------

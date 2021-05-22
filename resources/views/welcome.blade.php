@@ -35,8 +35,6 @@
                         @endif
                     @endif
 
-                    <a href="{{ route('user.home') }}" class="text-sm text-gray-700 underline">User Page</a>
-
                 </div>
             @endif
 

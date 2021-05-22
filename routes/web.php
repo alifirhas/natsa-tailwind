@@ -18,9 +18,10 @@ use App\Http\Controllers\Admin\IrrigationController;
 |
  */
 
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome')->middleware('guest');
 
 //Admin
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -29,12 +30,12 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::prefix('/user')->group(function () {
+    Route::prefix('/user')->middleware('role:user')->group(function () {
         Route::get('/home', [HomeController::class, 'index'])->name('user.home');
 
     });
 
-    Route::prefix('/admin')->group(function () {
+    Route::prefix('/admin')->middleware('role:admin')->group(function () {
         //dashboard
         Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
             return view('admin.dashboard');
