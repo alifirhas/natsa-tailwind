@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\VestigeController;
 use App\Http\Controllers\Admin\IrrigationController;
@@ -63,7 +64,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/vestiges/add', [VestigeController::class, 'showStore'])->name('admin.vestiges.add');
         Route::get('/vestiges/put/{vestige}', [VestigeController::class, 'showPut'])->name('admin.vestiges.put');
 
-
+        //social media
+        Route::get('/socialMedias', [SocialMediaController::class, 'index'])->name('admin.socialMedias');
+        Route::post('/socialMedias', [SocialMediaController::class, 'store']);
+        Route::delete('/socialMedias/{socialMedia}', [SocialMediaController::class, 'destroy'])->name('admin.socialMedias.delete');
+        Route::put('/socialMedias/{socialMedia}', [SocialMediaController::class, 'put'])->name('admin.socialMedias.update');
+        Route::get('/socialMedias/add', [SocialMediaController::class, 'showStore'])->name('admin.socialMedias.add');
+        Route::get('/socialMedias/put/{socialMedia}', [SocialMediaController::class, 'showPut'])->name('admin.socialMedias.put');
 
         Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             // Route::view('dashboard', 'dashboard')->name('dashboard');
