@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\VestigeController;
@@ -73,6 +74,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/socialMedias/add', [SocialMediaController::class, 'showStore'])->name('admin.socialMedias.add');
         Route::get('/socialMedias/put/{socialMedia}', [SocialMediaController::class, 'showPut'])->name('admin.socialMedias.put');
 
+        //social media
+        Route::get('/users', [UserController::class, 'index'])->name('admin.users');
+        Route::post('/users', [UserController::class, 'store']);
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
+        Route::put('/users/{user}', [UserController::class, 'put'])->name('admin.users.update');
+        Route::get('/users/add', [UserController::class, 'showStore'])->name('admin.users.add');
+        Route::get('/users/put/{user}', [UserController::class, 'showPut'])->name('admin.users.put');
+
+        
         Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             // Route::view('dashboard', 'dashboard')->name('dashboard');
             Route::view('admin.forms', 'admin.forms')->name('forms');
