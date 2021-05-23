@@ -24,6 +24,7 @@
                             <th class="px-4 py-3">Bekas</th>
                             <th class="px-4 py-3">Irigasi</th>
                             <th class="px-4 py-3">Daerah</th>
+                            <th class="px-4 py-3">Verifikasi</th>
                             <th class="px-4 py-3" colspan="2">Menu</th>
                         </tr>
                     </thead>
@@ -68,6 +69,9 @@
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 {{ $riceField->region->provinsi }}, {{ $riceField->region->kabupaten }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $riceField->verification->verification_type }}
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <form action="{{ route('admin.riceFields.delete', $riceField) }}" method="POST">

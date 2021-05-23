@@ -7,6 +7,7 @@ use App\Models\Region;
 use App\Models\Vestige;
 use App\Models\RiceField;
 use App\Models\Irrigation;
+use App\Models\Verification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -27,6 +28,7 @@ class RiceField extends Model
         'vestige_id',
         'irrigation_id',
         'region_id',
+        'verification_id',
     ];
 
     //relasi user dan riceField
@@ -47,5 +49,10 @@ class RiceField extends Model
     //relasi region dan riceField
     public function region(){
         return $this->belongsTo(Region::class);
+    }
+
+    //relasi region dan riceField
+    public function verification(){
+        return $this->belongsTo(Verification::class);
     }
 }
