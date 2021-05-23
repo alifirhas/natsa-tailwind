@@ -62,5 +62,15 @@ class User extends Authenticatable
     public function userSocialMedia(){
         return $this->hasMany(UserSocialMedia::class);
     }
+
+    /**
+     * Get all of the riceField for the RiceField
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function riceField()
+    {
+        return $this->hasMany(RiceField::class);
+    }
     
 }

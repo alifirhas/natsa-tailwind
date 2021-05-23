@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Models\Region;
+use App\Models\Vestige;
 use App\Models\RiceField;
+use App\Models\Irrigation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class RiceFieldController extends Controller
 {
     public function index(){
-        $riceField = RiceField::orderBy('created_at', 'asc')->paginate(10);
+        $riceField = RiceField::orderBy('created_at', 'asc')->with(['user', 'vestige', 'irrigation', 'region'])->paginate(10);
 
         return view('admin.riceFields.riceField',[
             'riceFields' => $riceField,
@@ -18,13 +22,32 @@ class RiceFieldController extends Controller
 
     public function showStore()
     {
-        return view('admin.riceFields.riceFieldAdd');
+        $users = User::where('role', 'user')->orderBy('name', 'asc')->get();
+        $vestiges = Vestige::orderBy('vestige', 'asc')->get();
+        $irrigations = Irrigation::orderBy('irrigation', 'asc')->get();
+        $regions = Region::orderBy('provinsi', 'asc')->get();
+
+        return view('admin.riceFields.riceFieldAdd', [
+            'users' => $users,
+            'vestiges' => $vestiges,
+            'irrigations' => $irrigations,
+            'regions' => $regions,
+        ]);
     }
 
     public function showPut(RiceField $riceField)
     {
+        $users = User::where('role', 'user')->orderBy('name', 'asc')->get();
+        $vestiges = Vestige::orderBy('vestige', 'asc')->get();
+        $irrigations = Irrigation::orderBy('irrigation', 'asc')->get();
+        $regions = Region::orderBy('provinsi', 'asc')->get();
+
         return view('admin.riceFields.riceFieldPut', [
             'riceField' => $riceField,
+            'users' => $users,
+            'vestiges' => $vestiges,
+            'irrigations' => $irrigations,
+            'regions' => $regions,
         ]);
     }
 
@@ -40,6 +63,10 @@ class RiceFieldController extends Controller
             'maps' => 'required|max:254',
             'sertifikasi' => 'required|max:20',
             'tipe' => 'required|max:20',
+            'pemilik' => 'required|',
+            'vestige' => 'required|',
+            'region' => 'required|',
+            'irrigation' => 'required|',
         ]);
 
         RiceField::create([
@@ -51,6 +78,10 @@ class RiceFieldController extends Controller
             'maps' => $request->maps,
             'sertifikasi' => $request->sertifikasi,
             'tipe' => $request->tipe,
+            'user_id' => $request->pemilik,
+            'vestige_id' => $request->vestige,
+            'region_id' => $request->region,
+            'irrigation_id' => $request->irrigation,
         ]);
 
         return redirect()->route('admin.riceFields');
@@ -76,6 +107,10 @@ class RiceFieldController extends Controller
             'maps' => 'required|max:254',
             'sertifikasi' => 'required|max:20',
             'tipe' => 'required|max:20',
+            'pemilik' => 'required|',
+            'vestige' => 'required|',
+            'region' => 'required|',
+            'irrigation' => 'required|',
         ]);
 
         $riceField->where('id', $riceField->id)
@@ -88,6 +123,10 @@ class RiceFieldController extends Controller
                 'maps' => $request->maps,
                 'sertifikasi' => $request->sertifikasi,
                 'tipe' => $request->tipe,
+                'user_id' => $request->pemilik,
+                'vestige_id' => $request->vestige,
+                'region_id' => $request->region,
+                'irrigation_id' => $request->irrigation,
             ]);
 
         return redirect()->route('admin.riceFields');

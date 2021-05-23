@@ -12,6 +12,7 @@
                         <tr
                             class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">ID</th>
+                            <th class="px-4 py-3">Pemilik</th>
                             <th class="px-4 py-3">Judul</th>
                             <th class="px-4 py-3">Harga</th>
                             <th class="px-4 py-3">Luas</th>
@@ -20,6 +21,9 @@
                             <th class="px-4 py-3">Sertifikasi</th>
                             <th class="px-4 py-3">Tipe</th>
                             <th class="px-4 py-3">Dibuat</th>
+                            <th class="px-4 py-3">Bekas</th>
+                            <th class="px-4 py-3">Irigasi</th>
+                            <th class="px-4 py-3">Daerah</th>
                             <th class="px-4 py-3" colspan="2">Menu</th>
                         </tr>
                     </thead>
@@ -28,6 +32,9 @@
                         <tr class="text-gray-700 dark:text-gray-400">
                             <td class="px-4 py-3">
                                 {{ $riceField->id }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $riceField->user->name }}
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 {{ $riceField->title }}
@@ -52,6 +59,15 @@
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 {{ $riceField->created_at }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $riceField->vestige->vestige }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $riceField->irrigation->irrigation }}
+                            </td>
+                            <td class="px-4 py-3 text-sm">
+                                {{ $riceField->region->provinsi }}, {{ $riceField->region->kabupaten }}
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <form action="{{ route('admin.riceFields.delete', $riceField) }}" method="POST">
