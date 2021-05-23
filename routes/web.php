@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\VestigeController;
+use App\Http\Controllers\Admin\RiceFieldController;
 use App\Http\Controllers\Admin\IrrigationController;
 
 /*
@@ -74,13 +75,21 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/socialMedias/add', [SocialMediaController::class, 'showStore'])->name('admin.socialMedias.add');
         Route::get('/socialMedias/put/{socialMedia}', [SocialMediaController::class, 'showPut'])->name('admin.socialMedias.put');
 
-        //social media
+        //user
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
         Route::post('/users', [UserController::class, 'store']);
         Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
         Route::put('/users/{user}', [UserController::class, 'put'])->name('admin.users.update');
         Route::get('/users/add', [UserController::class, 'showStore'])->name('admin.users.add');
         Route::get('/users/put/{user}', [UserController::class, 'showPut'])->name('admin.users.put');
+
+        //rice field -> sawah
+        Route::get('/riceFields', [RiceFieldController::class, 'index'])->name('admin.riceFields');
+        Route::post('/riceFields', [RiceFieldController::class, 'store']);
+        Route::delete('/riceFields/{riceField}', [RiceFieldController::class, 'destroy'])->name('admin.riceFields.delete');
+        Route::put('/riceFields/{riceField}', [RiceFieldController::class, 'put'])->name('admin.riceFields.update');
+        Route::get('/riceFields/add', [RiceFieldController::class, 'showStore'])->name('admin.riceFields.add');
+        Route::get('/riceFields/put/{riceField}', [RiceFieldController::class, 'showPut'])->name('admin.riceFields.put');
 
         
         Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
