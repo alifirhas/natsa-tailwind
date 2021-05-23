@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\VestigeController;
 use App\Http\Controllers\Admin\RiceFieldController;
 use App\Http\Controllers\Admin\IrrigationController;
+use App\Http\Controllers\Admin\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,14 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/riceFields/{riceField}', [RiceFieldController::class, 'put'])->name('admin.riceFields.update');
         Route::get('/riceFields/add', [RiceFieldController::class, 'showStore'])->name('admin.riceFields.add');
         Route::get('/riceFields/put/{riceField}', [RiceFieldController::class, 'showPut'])->name('admin.riceFields.put');
+
+        //verification
+        Route::get('/verifications', [VerificationController::class, 'index'])->name('admin.verifications');
+        Route::post('/verifications', [VerificationController::class, 'store']);
+        Route::delete('/verifications/{verification}', [VerificationController::class, 'destroy'])->name('admin.verifications.delete');
+        Route::put('/verifications/{verification}', [VerificationController::class, 'put'])->name('admin.verifications.update');
+        Route::get('/verifications/add', [VerificationController::class, 'showStore'])->name('admin.verifications.add');
+        Route::get('/verifications/put/{verification}', [VerificationController::class, 'showPut'])->name('admin.verifications.put');
 
         
         Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
