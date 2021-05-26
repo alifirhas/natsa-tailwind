@@ -2,15 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Region;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RegionController extends Controller
 {
     public function index()
     {
         $region = Region::orderBy('created_at', 'asc')->paginate(10);
+
+        return view('admin.regions.region', [
+            'regions' => $region,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+
+        $search = Str::of($request->search)->trim();
+        $sort = (!is_null($request->sort)) ? $request->sort : 'created_at' ;
+        $order = (!is_null($request->order)) ? $request->order : 'asc' ;
+
+        $region = Region::orderBy($sort, $order)
+            ->where('provinsi', 'LIKE', "%{$search}%")
+            ->orWhere('kabupaten', 'LIKE', "%{$search}%")
+            ->paginate(10);
 
         return view('admin.regions.region', [
             'regions' => $region,
@@ -69,5 +87,5 @@ class RegionController extends Controller
 
         return redirect()->route('admin.regions');
     }
-    
+
 }

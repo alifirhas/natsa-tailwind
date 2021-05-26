@@ -51,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/regions/{region}', [RegionController::class, 'put'])->name('admin.regions.update');
         Route::get('/regions/add', [RegionController::class, 'showStore'])->name('admin.regions.add');
         Route::get('/regions/put/{region}', [RegionController::class, 'showPut'])->name('admin.regions.put');
+        Route::get('/regions/search/', [RegionController::class, 'search'])->name('admin.regions.search');
+
 
         //irrigation
         Route::get('/irrigations', [IrrigationController::class, 'index'])->name('admin.irrigations');
