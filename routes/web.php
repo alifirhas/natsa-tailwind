@@ -88,6 +88,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/users/{user}', [UserController::class, 'put'])->name('admin.users.update');
         Route::get('/users/add', [UserController::class, 'showStore'])->name('admin.users.add');
         Route::get('/users/put/{user}', [UserController::class, 'showPut'])->name('admin.users.put');
+        Route::get('/users/search/', [UserController::class, 'search'])->name('admin.users.search');
+
 
         //rice field -> sawah
         Route::get('/riceFields', [RiceFieldController::class, 'index'])->name('admin.riceFields');
