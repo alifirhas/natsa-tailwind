@@ -27,7 +27,7 @@
                                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
 
                                     <option value="">---</option>
-                                    <option @isset($_GET['sort']) @if ($_GET['sort']=='created_at' ) selected @endif
+                                    <option @isset($_GET['sort']) @if ($_GET['sort']=='id' ) selected @endif
                                         @endisset value="id">ID</option>
                                     <option @isset($_GET['sort']) @if ($_GET['sort']=='provinsi' ) selected @endif
                                         @endisset value="provinsi">Provinsi</option>

@@ -18,6 +18,22 @@ class SocialMediaController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+
+        $search = Str::of($request->search)->trim();
+        $sort = (!is_null($request->sort)) ? $request->sort : 'created_at';
+        $order = (!is_null($request->order)) ? $request->order : 'asc';
+
+        $socialMedia = SocialMedia::orderBy($sort, $order)
+            ->where('sosmed', 'LIKE', "%{$search}%")
+            ->paginate(10);
+
+        return view('admin.socialMedias.socialMedia', [
+            'socialMedias' => $socialMedia,
+        ]);
+    }
+
     public function showStore()
     {
         return view('admin.socialMedias.socialMediaAdd');

@@ -2,16 +2,34 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Vestige;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class VestigeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $vestige = Vestige::orderBy('created_at', 'asc')->paginate(10);
 
-        return view('admin.vestiges.vestige',[
+        return view('admin.vestiges.vestige', [
+            'vestiges' => $vestige,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+
+        $search = Str::of($request->search)->trim();
+        $sort = (!is_null($request->sort)) ? $request->sort : 'created_at';
+        $order = (!is_null($request->order)) ? $request->order : 'asc';
+
+        $vestige = Vestige::orderBy($sort, $order)
+            ->where('vestige', 'LIKE', "%{$search}%")
+            ->paginate(10);
+
+        return view('admin.vestiges.vestige', [
             'vestiges' => $vestige,
         ]);
     }

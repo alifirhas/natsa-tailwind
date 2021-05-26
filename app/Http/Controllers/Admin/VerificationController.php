@@ -2,15 +2,33 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use App\Models\Verification;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class VerificationController extends Controller
 {
     public function index()
     {
         $verification = Verification::orderBy('created_at', 'asc')->paginate(10);
+
+        return view('admin.verifications.verification', [
+            'verifications' => $verification,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+
+        $search = Str::of($request->search)->trim();
+        $sort = (!is_null($request->sort)) ? $request->sort : 'created_at';
+        $order = (!is_null($request->order)) ? $request->order : 'asc';
+
+        $verification = Verification::orderBy($sort, $order)
+            ->where('verification_type', 'LIKE', "%{$search}%")
+            ->orWhere('desc', 'LIKE', "%{$search}%")
+            ->paginate(10);
 
         return view('admin.verifications.verification', [
             'verifications' => $verification,

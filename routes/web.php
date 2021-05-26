@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/irrigations/{irrigation}', [IrrigationController::class, 'put'])->name('admin.irrigations.update');
         Route::get('/irrigations/add', [IrrigationController::class, 'showStore'])->name('admin.irrigations.add');
         Route::get('/irrigations/put/{irrigation}', [IrrigationController::class, 'showPut'])->name('admin.irrigations.put');
+        Route::get('/irrigations/search/', [IrrigationController::class, 'search'])->name('admin.irrigations.search');
 
         //vesitge -> bekas
         Route::get('/vestiges', [VestigeController::class, 'index'])->name('admin.vestiges');
@@ -69,6 +70,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/vestiges/{vestige}', [VestigeController::class, 'put'])->name('admin.vestiges.update');
         Route::get('/vestiges/add', [VestigeController::class, 'showStore'])->name('admin.vestiges.add');
         Route::get('/vestiges/put/{vestige}', [VestigeController::class, 'showPut'])->name('admin.vestiges.put');
+        Route::get('/vestiges/search/', [VestigeController::class, 'search'])->name('admin.vestiges.search');
 
         //social media
         Route::get('/socialMedias', [SocialMediaController::class, 'index'])->name('admin.socialMedias');
@@ -77,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/socialMedias/{socialMedia}', [SocialMediaController::class, 'put'])->name('admin.socialMedias.update');
         Route::get('/socialMedias/add', [SocialMediaController::class, 'showStore'])->name('admin.socialMedias.add');
         Route::get('/socialMedias/put/{socialMedia}', [SocialMediaController::class, 'showPut'])->name('admin.socialMedias.put');
+        Route::get('/socialMedias/search/', [SocialMediaController::class, 'search'])->name('admin.socialMedias.search');
 
         //user
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
@@ -101,6 +104,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/verifications/{verification}', [VerificationController::class, 'put'])->name('admin.verifications.update');
         Route::get('/verifications/add', [VerificationController::class, 'showStore'])->name('admin.verifications.add');
         Route::get('/verifications/put/{verification}', [VerificationController::class, 'showPut'])->name('admin.verifications.put');
+        Route::get('/verifications/search/', [VerificationController::class, 'search'])->name('admin.verifications.search');
 
         
         Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
