@@ -19,6 +19,8 @@ class RegionController extends Controller
     {
         $region = QueryBuilder::for(Region::class)
                 ->allowedFilters(['kabupaten', 'provinsi'])
+                ->defaultSort('-created_at')
+                ->allowedSorts(['id', 'created_at', 'kabupaten', 'provinsi'])
                 ->paginate(10);
 
         $status = [
@@ -41,17 +43,6 @@ class RegionController extends Controller
         ];
 
         return response()->json($data);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -96,7 +87,9 @@ class RegionController extends Controller
     {
         $search = Str::of($search)->trim();
 
-        $region = Region::orderBy('created_at', 'asc')
+        $region = QueryBuilder::for(Region::class)
+            ->allowedSorts(['id', 'created_at', 'kabupaten', 'provinsi'])
+            ->defaultSort('-created_at')
             ->where('provinsi', 'LIKE', "%{$search}%")
             ->orWhere('kabupaten', 'LIKE', "%{$search}%")
             ->paginate(10);
@@ -121,28 +114,5 @@ class RegionController extends Controller
         ];
 
         return response()->json($data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }
