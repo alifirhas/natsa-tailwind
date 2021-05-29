@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\API\RegionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\RegionController;
+use App\Http\Controllers\API\IrrigationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [RegionController::class, 'index']);
         Route::get('/{id}', [RegionController::class, 'show']);
         Route::get('/search/{search}', [RegionController::class, 'search'])->name('region.search');
-        Route::get('/filter', [RegionController::class, 'filter'])->name('region.filter');
+
+    });
+
+    //Regions
+    Route::prefix('irrigation')->group(function () {
+
+        Route::get('/', [IrrigationController::class, 'index']);
+        Route::get('/{id}', [IrrigationController::class, 'show']);
+        Route::get('/search/{search}', [IrrigationController::class, 'search'])->name('region.search');
 
     });
 
