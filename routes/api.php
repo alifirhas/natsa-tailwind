@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegionController;
 use App\Http\Controllers\API\VestigeController;
 use App\Http\Controllers\API\IrrigationController;
+use App\Http\Controllers\API\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,12 +41,21 @@ Route::middleware('auth:sanctum')->group(function () {
 
     });
 
-    //Regions
+    //Vestiges
     Route::prefix('vestiges')->group(function () {
 
         Route::get('/', [VestigeController::class, 'index']);
         Route::get('/{id}', [VestigeController::class, 'show']);
         Route::get('/search/{search}', [VestigeController::class, 'search']);
+
+    });
+
+    //Verifications
+    Route::prefix('verifications')->group(function () {
+
+        Route::get('/', [VerificationController::class, 'index']);
+        Route::get('/{id}', [VerificationController::class, 'show']);
+        Route::get('/search/{search}', [VerificationController::class, 'search']);
 
     });
 
