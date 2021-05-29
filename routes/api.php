@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegionController;
 use App\Http\Controllers\API\VestigeController;
 use App\Http\Controllers\API\IrrigationController;
+use App\Http\Controllers\API\SocialMediaController;
 use App\Http\Controllers\API\VerificationController;
 
 /*
@@ -59,4 +60,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
     });
 
+    //Social Media
+    Route::prefix('socialMedias')->group(function () {
+
+        Route::get('/', [SocialMediaController::class, 'index']);
+        Route::get('/{id}', [SocialMediaController::class, 'show']);
+        Route::get('/search/{search}', [SocialMediaController::class, 'search']);
+
+    });
 });
