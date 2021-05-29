@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\RegionController;
+use App\Http\Controllers\API\VestigeController;
 use App\Http\Controllers\API\IrrigationController;
 
 /*
@@ -26,16 +27,25 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::get('/', [RegionController::class, 'index']);
         Route::get('/{id}', [RegionController::class, 'show']);
-        Route::get('/search/{search}', [RegionController::class, 'search'])->name('region.search');
+        Route::get('/search/{search}', [RegionController::class, 'search']);
 
     });
 
     //Regions
-    Route::prefix('irrigation')->group(function () {
+    Route::prefix('irrigations')->group(function () {
 
         Route::get('/', [IrrigationController::class, 'index']);
         Route::get('/{id}', [IrrigationController::class, 'show']);
-        Route::get('/search/{search}', [IrrigationController::class, 'search'])->name('region.search');
+        Route::get('/search/{search}', [IrrigationController::class, 'search']);
+
+    });
+
+    //Regions
+    Route::prefix('vestiges')->group(function () {
+
+        Route::get('/', [VestigeController::class, 'index']);
+        Route::get('/{id}', [VestigeController::class, 'show']);
+        Route::get('/search/{search}', [VestigeController::class, 'search']);
 
     });
 
