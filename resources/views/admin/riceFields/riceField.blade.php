@@ -62,16 +62,16 @@
                                 {{ $riceField->created_at }}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $riceField->vestige->vestige }}
+                                {{ $riceField->vestige }}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $riceField->irrigation->irrigation }}
+                                {{ $riceField->irrigation }}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $riceField->region->provinsi }}, {{ $riceField->region->kabupaten }}
+                                {{ $riceField->region }}
                             </td>
                             <td class="px-4 py-3 text-sm">
-                                {{ $riceField->verification->verification_type }}
+                                {{ $riceField->verification }}
                             </td>
                             <td class="px-4 py-3 text-sm">
                                 <form action="{{ route('admin.riceFields.delete', $riceField) }}" method="POST">
