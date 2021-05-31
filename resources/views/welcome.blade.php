@@ -26,7 +26,17 @@
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <a href="{{ route('welcome') }}" class="text-sm text-gray-700 underline inline">Home</a>
+                        
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <li class="flex">
+                                <a class="text-sm text-gray-700 underline" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                    <span>{{ __('Logout') }}</span>
+                                </a>
+                            </li>
+                        </form>
+
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 

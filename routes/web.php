@@ -5,6 +5,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\Admin\RegionController;
+use App\Http\Controllers\User\ProductController;
 use App\Http\Controllers\Admin\VestigeController;
 use App\Http\Controllers\Admin\RiceFieldController;
 use App\Http\Controllers\Admin\IrrigationController;
@@ -22,15 +23,27 @@ use App\Http\Controllers\Admin\VerificationController;
  */
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome')->middleware('guest');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome')->middleware('guest');
 
-//Admin
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 
+//home user
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+//halaman kategori
+Route::get('/categories', function(){
+    return view('user.categories');
+})->name('categories');
+
+//product
+Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('product');
+
+//Admin
 Route::middleware(['auth'])->group(function () {
 
     Route::prefix('/user')->middleware('role:user')->group(function () {
