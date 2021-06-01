@@ -71,7 +71,7 @@ return [
             return route('user.home');
         }
 
-        return route('welcome');
+        return route('home');
 
     },
 
